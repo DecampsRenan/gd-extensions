@@ -12,6 +12,6 @@ This is the place where I store my GDevelop extensions. I hope they can be publi
 
 ## Extensions
 
-| Name | Version | Published | 
-|:-----|:--------|:----------|
-| Custom Cursor | `1.0.0` | [ ] |
+| Name                                      | Version | Published |
+| :---------------------------------------- | :------ | :-------- |
+| [Custom Cursor](./CustomCursor/README.md) | `1.0.0` | ❌        |
