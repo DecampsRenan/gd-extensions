@@ -3,14 +3,17 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "build": "bun run index.ts"
+    "build": "bun run index.ts",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@decampsrenan/prettier-config": "3.0.0",
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "husky": "9.0.11",
+    "lint-staged": "15.2.4"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "5.4.5"
   },
   "prettier": "@decampsrenan/prettier-config"
 }

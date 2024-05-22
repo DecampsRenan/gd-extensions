@@ -1,3 +1,4 @@
+#!/usr/bin/env bun
 import { unlinkSync } from 'node:fs';
 import { appendFile, readdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
@@ -8,7 +9,7 @@ type ExtensionContent = {
   iconUrl?: string;
   shortDescription: string;
   version: string;
-  description: string;
+  description: Array<string>;
   eventsBasedBehaviors: Array<Behavior>;
 };
 
@@ -27,6 +28,7 @@ const ignoredFiles = [
   'tsconfig.json',
   'index.ts',
   '.git',
+  '.husky',
 ];
 
 const currentDirContent = await readdir(import.meta.dir);
@@ -51,24 +53,8 @@ for (let extensionDirectory of extensionsDir) {
 
 > ${extension.shortDescription}
 
-${extension.description}
+${extension.description.join('\n')}
   `;
 
   await appendFile(readmeFilePath, extensionSummary);
-  await appendFile(readmeFilePath, '\n');
-  await appendFile(readmeFilePath, '---');
-  await appendFile(readmeFilePath, '\n');
-
-  // 4. For each behavior inside, write description
-  let behaviorsDetails = [];
-  for (let behavior of extension.eventsBasedBehaviors) {
-    behaviorsDetails.push(
-      `
-### ${behavior.fullName}
-
-${behavior.description}
-    `,
-    );
-  }
-  await appendFile(readmeFilePath, behaviorsDetails.join('\n---\n'));
 }
