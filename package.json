@@ -1,0 +1,16 @@
+{
+  "name": "gd-extensions",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "bun run index.ts"
+  },
+  "devDependencies": {
+    "@decampsrenan/prettier-config": "3.0.0",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "prettier": "@decampsrenan/prettier-config"
+}
