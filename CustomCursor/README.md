@@ -10,13 +10,13 @@ Add the behavior to a sprite object. The sprite object must meet the following c
 
 | Do                                                                                           | Don't                                                                                              |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| ![Do place origin](/DecampsRenan/gd-extensions/raw/main/CustomCursor/assets/Do%20origin.png) | ![Don't place origin](/DecampsRenan/gd-extensions/raw/main/CustomCursor/assets/Don't%20origin.png) |
+| ![Do place origin](https://github.com/DecampsRenan/gd-extensions/raw/main/CustomCursor/assets/Do%20origin.png) | ![Don't place origin](https://github.com/DecampsRenan/gd-extensions/raw/main/CustomCursor/assets/Don't%20origin.png) |
 
 - **Optional** The center point allow you to rotate the sprite around where you are supposed to click (the tip of your system cursor). Usefull when you want to rotate your sprite in the editor
 
 | Do                                                                                               | Don't                                                                                                  |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| ![Do place rotation](/DecampsRenan/gd-extensions/raw/main/CustomCursor/assets/Do%20rotation.png) | ![Don't place rotation](/DecampsRenan/gd-extensions/raw/main/CustomCursor/assets/Don't%20rotation.png) |
+| ![Do place rotation](https://github.com/DecampsRenan/gd-extensions/raw/main/CustomCursor/assets/Do%20rotation.png) | ![Don't place rotation](https://github.com/DecampsRenan/gd-extensions/raw/main/CustomCursor/assets/Don't%20rotation.png) |
 
 ### Customize behavior
 
