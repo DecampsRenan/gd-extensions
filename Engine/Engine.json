@@ -1,0 +1,573 @@
+{
+  "author": "",
+  "category": "Game mechanic",
+  "extensionNamespace": "",
+  "fullName": "Engine",
+  "helpPath": "",
+  "iconUrl": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0ibWRpLWJhdHRlcnktY2hhcmdpbmctMTAwIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTIzLDExSDIwVjRMMTUsMTRIMThWMjJNMTIuNjcsNEgxMVYySDVWNEgzLjMzQTEuMzMsMS4zMyAwIDAsMCAyLDUuMzNWMjAuNjdDMiwyMS40IDIuNiwyMiAzLjMzLDIySDEyLjY3QzEzLjQsMjIgMTQsMjEuNCAxNCwyMC42N1Y1LjMzQTEuMzMsMS4zMyAwIDAsMCAxMi42Nyw0WiIgLz48L3N2Zz4=",
+  "name": "Engine",
+  "previewIconUrl": "https://asset-resources.gdevelop.io/public-resources/Icons/988457f88d6453fdfa741f15410dcd46a37bd30522de37b63af25b8339bc2661_battery-charging-100.svg",
+  "shortDescription": "Allow object to act as if they had battery",
+  "version": "1.0.0",
+  "description": "Allow object to act as if they had battery.",
+  "tags": [
+    "battery",
+    "power",
+    "engine"
+  ],
+  "authorIds": [
+    "Pyh1OHeipQPewylQ5xE5LB6YvGB2"
+  ],
+  "dependencies": [],
+  "eventsFunctions": [],
+  "eventsBasedBehaviors": [
+    {
+      "description": "Manage engines, add power levels, consumption, toggle states on and off.\nCan be used to manage battery powered things.",
+      "fullName": "Engine",
+      "name": "Engine",
+      "objectType": "Sprite",
+      "eventsFunctions": [
+        {
+          "fullName": "",
+          "functionType": "Action",
+          "name": "doStepPreEvents",
+          "sentence": "",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "Engine::Engine::PropertyisPowered"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Engine::Engine::SetPropertypower"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "-",
+                    "Object.Behavior::PropertypowerConsumption()*TimeDelta()"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "Engine::Engine::Propertypower"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "<=",
+                    "0"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Engine::Engine::SetPropertyisPowered"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "no"
+                  ]
+                }
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "supplementaryInformation": "Sprite",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "Engine::Engine",
+              "type": "behavior"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "the maximum power value the object should have. of the object. Used to know to the maximum value you can set as power. power will never exceed maxPower.",
+          "fullName": "Maximum power value the object should have.",
+          "functionType": "ExpressionAndCondition",
+          "group": "Engine configuration",
+          "name": "MaxPower",
+          "sentence": "the maximum power value the object should have.",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SetReturnNumber"
+                  },
+                  "parameters": [
+                    "maxPower"
+                  ]
+                }
+              ]
+            }
+          ],
+          "expressionType": {
+            "type": "expression"
+          },
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "supplementaryInformation": "Sprite",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "Engine::Engine",
+              "type": "behavior"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "fullName": "",
+          "functionType": "ActionWithOperator",
+          "getterName": "MaxPower",
+          "name": "SetMaxPower",
+          "sentence": "",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "Engine::Engine::Power"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    ">",
+                    "Value",
+                    ""
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Engine::Engine::SetPropertypower"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "=",
+                    "Value"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Engine::Engine::SetPropertymaxPower"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "=",
+                    "Value"
+                  ]
+                }
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "supplementaryInformation": "Sprite",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "Engine::Engine",
+              "type": "behavior"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "the current power the engine have of the object. Used to know the actual power remaining in the engine. Cannot exceed maxPower, and if equal or lower than 0 it will turn off the engine.",
+          "fullName": "Current power the engine have",
+          "functionType": "ExpressionAndCondition",
+          "group": "Engine configuration",
+          "name": "Power",
+          "sentence": "the current power the engine have",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SetReturnNumber"
+                  },
+                  "parameters": [
+                    "ceil(power)"
+                  ]
+                }
+              ]
+            }
+          ],
+          "expressionType": {
+            "type": "expression"
+          },
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "supplementaryInformation": "Sprite",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "Engine::Engine",
+              "type": "behavior"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "fullName": "",
+          "functionType": "ActionWithOperator",
+          "getterName": "Power",
+          "name": "SetPower",
+          "sentence": "",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Engine::Engine::SetPropertypower"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "=",
+                    "Value"
+                  ]
+                }
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "supplementaryInformation": "Sprite",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "Engine::Engine",
+              "type": "behavior"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "Check if the engine is turned on. Know if the engine is turned on or off",
+          "fullName": "The engine is turned on",
+          "functionType": "Condition",
+          "group": "Engine configuration",
+          "name": "IsPowered",
+          "sentence": "_PARAM0_ the engine is turned on",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "Engine::Engine::PropertyisPowered"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SetReturnBoolean"
+                  },
+                  "parameters": [
+                    "True"
+                  ]
+                }
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "supplementaryInformation": "Sprite",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "Engine::Engine",
+              "type": "behavior"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "Change if the engine is turned on. Know if the engine is turned on or off",
+          "fullName": "The engine is turned on",
+          "functionType": "Action",
+          "group": "Engine configuration",
+          "name": "SetIsPowered",
+          "sentence": "_PARAM0_ the engine is turned on: _PARAM2_",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "inverted": true,
+                    "value": "GetArgumentAsBoolean"
+                  },
+                  "parameters": [
+                    "\"Value\""
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Engine::Engine::SetPropertyisPowered"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "no"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "GetArgumentAsBoolean"
+                  },
+                  "parameters": [
+                    "\"Value\""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "Engine::Engine::Propertypower"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    ">",
+                    "0"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Engine::Engine::SetPropertyisPowered"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "yes"
+                  ]
+                }
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "supplementaryInformation": "Sprite",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "Engine::Engine",
+              "type": "behavior"
+            },
+            {
+              "defaultValue": "yes",
+              "description": "IsPowered",
+              "name": "Value",
+              "optional": true,
+              "type": "yesorno"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "description": "the power used each seconds when turned on (default: 1 unit every seconds) of the object. When turned on, the engine will decrease power of powerConsumption each seconds.",
+          "fullName": "Power used each seconds when turned on (default: 1 unit every seconds)",
+          "functionType": "ExpressionAndCondition",
+          "group": "Engine configuration",
+          "name": "PowerConsumption",
+          "sentence": "the power used each seconds when turned on (default: 1 unit every seconds)",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SetReturnNumber"
+                  },
+                  "parameters": [
+                    "powerConsumption"
+                  ]
+                }
+              ]
+            }
+          ],
+          "expressionType": {
+            "type": "expression"
+          },
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "supplementaryInformation": "Sprite",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "Engine::Engine",
+              "type": "behavior"
+            }
+          ],
+          "objectGroups": []
+        },
+        {
+          "fullName": "",
+          "functionType": "ActionWithOperator",
+          "getterName": "PowerConsumption",
+          "name": "SetPowerConsumption",
+          "sentence": "",
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Engine::Engine::SetPropertypowerConsumption"
+                  },
+                  "parameters": [
+                    "Object",
+                    "Behavior",
+                    "=",
+                    "Value"
+                  ]
+                }
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "description": "Object",
+              "name": "Object",
+              "supplementaryInformation": "Sprite",
+              "type": "object"
+            },
+            {
+              "description": "Behavior",
+              "name": "Behavior",
+              "supplementaryInformation": "Engine::Engine",
+              "type": "behavior"
+            }
+          ],
+          "objectGroups": []
+        }
+      ],
+      "propertyDescriptors": [
+        {
+          "value": "100",
+          "type": "Number",
+          "label": "Maximum power value the object should have.",
+          "description": "Used to know to the maximum value you can set as power. power will never exceed maxPower.",
+          "group": "",
+          "extraInformation": [],
+          "name": "maxPower"
+        },
+        {
+          "value": "100",
+          "type": "Number",
+          "label": "Current power the engine have",
+          "description": "Used to know the actual power remaining in the engine. Cannot exceed maxPower, and if equal or lower than 0 it will turn off the engine.",
+          "group": "",
+          "extraInformation": [],
+          "name": "power"
+        },
+        {
+          "value": "",
+          "type": "Boolean",
+          "label": "The engine is turned on",
+          "description": "Know if the engine is turned on or off",
+          "group": "",
+          "extraInformation": [],
+          "name": "isPowered"
+        },
+        {
+          "value": "1",
+          "type": "Number",
+          "label": "Power used each seconds when turned on (default: 1 unit every seconds)",
+          "description": "When turned on, the engine will decrease power of powerConsumption each seconds.",
+          "group": "",
+          "extraInformation": [],
+          "name": "powerConsumption"
+        }
+      ],
+      "sharedPropertyDescriptors": []
+    }
+  ],
+  "eventsBasedObjects": []
+}

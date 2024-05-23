@@ -15,3 +15,4 @@ This is the place where I store my GDevelop extensions. I hope they can be publi
 | Name                                      | Version | Published |
 | :---------------------------------------- | :------ | :-------- |
 | [Custom Cursor](./CustomCursor/README.md) | `1.0.0` | ❌        |
+| [Engine](./Engine/README.md)              | `1.0.0` | ❌        |

@@ -46,14 +46,19 @@ for (let extensionDirectory of extensionsDir) {
 
   // 3. Write extension summary
   const readmeFilePath = resolve(import.meta.dir, `${extensionDirectory}/README.md`);
-  unlinkSync(readmeFilePath); // Make sure to remove existing file before generating new content
+
+  try {
+    unlinkSync(readmeFilePath); // Make sure to remove existing file before generating new content
+  } catch (error) {
+    console.log('No file to delete');
+  }
 
   const extensionSummary = `
 ## ${extension.fullName} - v${extension.version}
 
 > ${extension.shortDescription}
 
-${extension.description.join('\n')}
+${Array.isArray(extension.description) ? extension.description.join('\n') : extension.description}
   `;
 
   await appendFile(readmeFilePath, extensionSummary);
